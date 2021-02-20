@@ -13,7 +13,7 @@ $(document).keydown(function() {
     }
 });
 
-// What a BTN will do evetime we press it
+// All that a BTN will do evetime we press it
 $(".btn").click(function() {
    let userChosenColor = $(this).attr("id");
    userClickedPattern.push(userChosenColor);
@@ -21,15 +21,17 @@ $(".btn").click(function() {
    animatePress(userChosenColor);
 })
 
-// Randomly choose a color
-function nextSequence() {
 
+function nextSequence() {
+  // Increase level each time next Sequence is run and change text for user to see
   level++;
   $("#level-title").text("Level " + level);
 
+  // Randomly choose a color
   let randomNumber = Math.floor(Math.random() * 4);
   let randomChosenColor = buttonColors[randomNumber];
   gamePattern.push(randomChosenColor);
+  // Add a flashing effect
   $("#" + randomChosenColor).fadeIn(100).fadeOut(100).fadeIn(100);
   playSound(randomChosenColor);
 
@@ -40,6 +42,7 @@ function playSound(name) {
   audio.play();
 }
 
+// add shadow effect and change color of BTN container
 function animatePress(currentColor) {
   $("#" + currentColor).addClass("pressed");
 
